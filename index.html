@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>PWA</title>
+    <link rel="manifest" href="manifest.json">
+    <meta name="viewport" content="width=device-width, initial-scale=1">    
+    <meta name="theme-color" content="#92278F">
+    <style>
+        body{
+            margin: 0;
+            background-color: #E0E0E0;
+        }
+        #shell-header{
+            background-color: #92278F;            
+        }
+        #shell-header img{
+            width: 36px;
+        }
+        #shell-fab{
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            border-radius: 50%;
+            padding: 20px;
+            color: white;
+            background: navy;
+        }
+    </style>
+</head>
+<body>
+    <div id="shell-header">
+        <img src="images/logo.png" alt="PWA logo">
+    </div>
+
+    <div id="shell-fab">
+        <strong>+</strong>
+    </div>
+
+    <div id="artists-list"></div>
+    
+    <script async src="js/app.js"></script>
+
+    <script>
+    (function(){        
+        var link = document.createElement('link');
+        link.href = 'css/app.css';
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        document.body.appendChild(link);
+    })();</script>
+
+    <script>
+    if('serviceWorker' in navigator){
+        navigator.serviceWorker.register('service-worker.js').then(function(){
+            console.log('SW success');
+        }).catch(function(e){
+            console.log(e, "error");
+        })
+    }
+    </script>   
+
+    <noscript>
+        <link rel="stylesheet" href="css/app.css">
+    </noscript>     
+</body>
+</html>
